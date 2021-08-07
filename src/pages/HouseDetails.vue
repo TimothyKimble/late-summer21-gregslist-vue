@@ -1,20 +1,22 @@
 <template>
-  <div class=" row car-details-page d-flex justify-content-center">
+  <div class=" row house-details-page d-flex justify-content-center">
     <div class="col-md-12 text-center">
-    <h1>Welcome to the car details</h1></div>
-    <div class="col-md-6">
+    <h1>Welcome to the house details</h1></div>
+    <div class="col-md-5">
       <div class="row text-center">
 
         <div class="col-md-12">
-      <img class="w-100 " :src="car.imgUrl" alt="">
+      <img class="w-100 " :src="house.imgUrl" alt="">
         </div>
 
         <div class="col-md-12">
-          <h2>{{car.make}} - {{car.model}}</h2>
+          <h2>Year: {{house.year}}</h2>
+            <h2> Bedrooms: {{house.bedrooms}}</h2> 
+            <h2> Bathrooms: {{house.bathrooms}}</h2>
         </div>
 
         <div class="col-md-12">
-          <h3>{{car.description}}</h3>
+          <h3>{{house.description}}</h3>
         </div>
 
         <div class="col-md-12">
@@ -40,7 +42,7 @@
 <script>
 import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
-import { carsService } from '../services/CarsService'
+import { housesService } from '../services/HousesService'
 import {useRoute, useRouter} from 'vue-router'
 
 export default {
@@ -49,18 +51,18 @@ export default {
     const router = useRouter()
     onMounted(async()=>{
       try {
-        await carsService.getCarById(route.params.id)
+        await housesService.getHouseById(route.params.id)
       } catch (error) {
         console.error(error)
       }
     })
     return {
-      car: computed(()=> AppState.activeCar),
+      house: computed(()=> AppState.activeHouse),
       async destroy(){
         try {
-          await carsService.destroy(route.params.id)
+          await housesService.destroy(route.params.id)
           //  navigate user back to home
-          router.push({name: 'Home'})
+          router.push({name: 'House'})
         } catch (error) {
           console.error(error)
         }

@@ -2,13 +2,13 @@
   <div class="home">
     <div class="row">
       <div class="col">
-        <CarForm />
+        <HouseForm />
       </div>
     </div>
     <div class="row">
-      <div class="col-4" v-for="c in cars" :key="c.id">
-        <!-- Data passed through prop ':car' to child -->
-        <CarCard :car="c"/>
+      <div class="col-md-3" v-for="h in houses" :key="h.id">
+        <!-- Data passed through prop ':house' to child -->
+        <HouseCard :house="h"/>
       </div>
     </div>
   </div>
@@ -17,19 +17,19 @@
 <script>
 import { computed, onMounted } from '@vue/runtime-core'
 import {AppState} from '../AppState.js'
-import {carsService } from '../services/CarsService'
-import CarCard from '../components/CarCard.vue'
-import CarForm from '../components/CarForm.vue'
+import {housesService } from '../services/HousesService'
+import HouseCard from '../components/HouseCard.vue'
+import HouseForm from '../components/HouseForm.vue'
 
 export default {
-  name: 'Home',
+  name: 'House',
   setup(){
     // state
 
     // mounted
     onMounted(async ()=>{
       try {
-        await carsService.getCars()
+        await housesService.getHouses()
       } catch (error) {
         console.error(error)
       }
@@ -37,13 +37,13 @@ export default {
     return {
       // state,
       // computeds
-      cars: computed(() => AppState.cars)
+      houses: computed(() => AppState.houses)
       // methods
     }
   },
   components: {
-    CarCard,
-    CarForm
+    HouseCard,
+    HouseForm
   }
 }
 </script>

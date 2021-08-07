@@ -1,11 +1,11 @@
 <template>
-      <div class="car m-2 bg-light shadow shrink">
+      <div class="House m-2 bg-light shadow shrink">
         <!-- passing required param ':id' -->
-        <router-link :to="{name: 'CarDetails', params: {id: car.id}}">
-          <img :src="car.imgUrl" class="w-100" :alt="car.make">
+        <router-link :to="{name: 'HouseDetails', params: {id: house.id}}">
+          <img :src="house.imgUrl" class="w-100" :alt="house.year">
           <div class="p-3">
               <div class="text-center">
-                  <p><b>{{car.year}} - {{car.make}}</b></p>
+                  <p><b>Year: {{house.year}} - Bedrooms: {{house.bedrooms}}</b></p>
               </div>
           </div>
         </router-link>
@@ -17,7 +17,7 @@
 export default {
   props: {
     // value captured from the parent data
-    car: {
+    house: {
       type: Object,
       required: true
     }

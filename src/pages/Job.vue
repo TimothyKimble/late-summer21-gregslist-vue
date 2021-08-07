@@ -1,14 +1,14 @@
 <template>
-  <div class="home">
+  <div class="Job">
     <div class="row">
       <div class="col">
-        <CarForm />
+        <JobForm />
       </div>
     </div>
     <div class="row">
-      <div class="col-4" v-for="c in cars" :key="c.id">
-        <!-- Data passed through prop ':car' to child -->
-        <CarCard :car="c"/>
+      <div class="col-md-3" v-for="j in jobs" :key="j.id">
+        <!-- Data passed through prop ':Job' to child -->
+        <JobCard :job="j"/>
       </div>
     </div>
   </div>
@@ -17,19 +17,19 @@
 <script>
 import { computed, onMounted } from '@vue/runtime-core'
 import {AppState} from '../AppState.js'
-import {carsService } from '../services/CarsService'
-import CarCard from '../components/CarCard.vue'
-import CarForm from '../components/CarForm.vue'
+import {jobsService } from '../services/JobsService'
+import JobCard from '../components/JobCard.vue'
+import JobForm from '../components/JobForm.vue'
 
 export default {
-  name: 'Home',
+  name: 'Job',
   setup(){
     // state
 
     // mounted
     onMounted(async ()=>{
       try {
-        await carsService.getCars()
+        await jobsService.getJobs()
       } catch (error) {
         console.error(error)
       }
@@ -37,13 +37,13 @@ export default {
     return {
       // state,
       // computeds
-      cars: computed(() => AppState.cars)
+      jobs: computed(() => AppState.jobs)
       // methods
     }
   },
   components: {
-    CarCard,
-    CarForm
+    JobCard,
+    JobForm
   }
 }
 </script>

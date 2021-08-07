@@ -1,11 +1,11 @@
 <template>
-      <div class="car m-2 bg-light shadow shrink">
+      <div class="Job m-2 bg-light shadow shrink">
         <!-- passing required param ':id' -->
-        <router-link :to="{name: 'CarDetails', params: {id: car.id}}">
-          <img :src="car.imgUrl" class="w-100" :alt="car.make">
+        <router-link :to="{name: 'JobDetails', params: {id: job.id}}">
+          <img src="https://placekitten.com/200/200" class="w-100" :alt="job.year">
           <div class="p-3">
               <div class="text-center">
-                  <p><b>{{car.year}} - {{car.make}}</b></p>
+                  <p><b>Title: {{job.jobTitle}} - Rate: ${{job.rate}} per hour</b></p>
               </div>
           </div>
         </router-link>
@@ -17,7 +17,7 @@
 export default {
   props: {
     // value captured from the parent data
-    car: {
+    job: {
       type: Object,
       required: true
     }
